@@ -1,0 +1,28 @@
+2.4.1 Java堆溢出     （jdk1.8环境 本书基于jdk1.7讲解 会有误差）
+       HeapOOM.class 
+       设置堆的大小为1MB -Xms跟-Xmx的值相等可避免堆自动扩展
+       java HeapOOM -verbose:gc -Xms1m -Xmx1m -XX:+HeapDumpOnOutOfMemoryError
+
+2.4.2 虚拟机栈和本地方法栈溢出 
+       JavaVMSOF.class JavaVMOOM.class
+       栈容量只由-Xss参数设定      
+       测试StackOverFlowError异常  java JavaVMSOF -Xss128k 
+       测试OutOfMemoryError异常    java JavaVMOOM -Xss2M  （多线程 未测试成功）
+
+2.4.3 方法区和运行时常量池溢出
+       RuntimeConstantPoolOOM.class  test.class
+       测试jdk1.7以后常量池逐步“去永久代” 测试表明while循环一直在进行 未出现溢出现象
+       应该能证明运行时常量池已不再属于方法区
+       java RuntimeConstantPoolOOM -XX:Permsize=1M -XX:MaxPermSize=1M
+       在这里测试了String.intern()方法，结果出现了true 和 false 这完全表明常量池已不再属于方法区！！
+
+2.4.4 本机直接内存溢出
+       
+
+       
+
+
+     
+
+   
+
