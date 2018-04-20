@@ -1,0 +1,21 @@
+3.1
+	struts2是一个运行于web容器的表示层框架，其核心作用是帮助处理HTTP请求
+	所以struts2通过扩展实现servlet标准来处理HTTP请求
+
+3.2 struts2的核心入口程序
+	struts2的核心入口程序从本质上必须能够处理HTTP请求，所以struts2必须遵循servlet标准，通过实现标准的filter接口处理http请求。在web.xml指定这个实现类，就可以--将struts2框架引入到应用中--  （--表示强调）
+
+3.3 第一条主线 struts2的初始化主线 --init方法驱动执行
+	1.仅在web应用启动时执行一次
+	2.init方法的执行失败将导致整个web应用启动失败
+	struts2的初始化主线，实际最终转化为对这个‘容器’的初始化工程（框架级别的容器）
+
+3.4 第二条主线 struts2的HTTP请求处理主线 --struts2的核心主线
+	分为两大阶段： 
+	第一阶段：HTTP请求预处理，此时程序执行的控制权在struts2手上，程序代码在这个阶段依赖于web容器，并时时刻刻将于web容器打交道为主要工作
+	其中的Dispather，核心分发器，是整个struts2框架的核心，是HTTP请求预处理的实际执行者。
+	第二阶段：XWork执行业务逻辑，此时程序执行的控制权转移给了XWork，与第一阶段完全相反，不依赖于web容器，完全由XWork框架驱动整个执行过程。
+	其中Xwork的七大元素，ActionProxy，ActionInvocation，Interceptor，Action，ActionContext，ValueStack，Result，贯穿了XWork事件执行器的整个生命周期
+
+
+
